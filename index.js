@@ -1,7 +1,10 @@
 const app = require("express")();
+const cors = require("cors");
 const axios = require("axios").default;
 
 require("dotenv").config();
+
+app.use(cors());
 
 app.get("/", (req,res) => {
     const query = Object.keys(req.query);
@@ -18,6 +21,8 @@ app.get("/", (req,res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000, () => {
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
     console.log("Server started");
+    console.log("Listening on http://localhost:" + PORT);
 });
